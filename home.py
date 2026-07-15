@@ -22,10 +22,6 @@ def carregar_dados(arquivo):
         return pd.read_parquet(arquivo)
     else:
         return pd.DataFrame()
-<<<<<<< HEAD
-
-=======
->>>>>>> 2ba440c5c270b79b70973dc6af59cd3b1dc021a5
 
 
 @st.cache_resource
