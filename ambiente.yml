@@ -1,0 +1,12 @@
+name: consumo-combustivel
+channels:
+  - defaults
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+    - streamlit
+    - pandas
+    - numpy
+    - scikit-learn
+    - plotly
