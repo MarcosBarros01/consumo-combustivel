@@ -13,10 +13,15 @@ from pandas.api.types import (
 
 from notebooks.src.config import DADOS_CONSOLIDADOS, DADOS_TRATADOS, MODELO_FINAL
 
+import os
 
 @st.cache_data
 def carregar_dados(arquivo):
-    return pd.read_parquet(arquivo)
+    if os.path.exists(arquivo):
+        return pd.read_parquet(arquivo)
+    else:
+        return pd.DataFrame()
+
 
 
 @st.cache_resource
@@ -103,6 +108,11 @@ def filter_dataframe(df: pd.DataFrame) -> pd.DataFrame:
 
 
 df_consolidado = carregar_dados(DADOS_CONSOLIDADOS)
+
+if df_consolidado.empty:
+    st.info("📊 Nenhum dado disponível ainda. Vá até a aba de **Cadastro** para registrar abastecimentos.")
+    st.stop()
+
 df_tratado = carregar_dados(DADOS_TRATADOS)
 modelo = carregar_modelo(MODELO_FINAL)
 
